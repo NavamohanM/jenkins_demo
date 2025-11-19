@@ -12,21 +12,22 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running Tests...'
-                bat 'test.bat'
+                sh 'chmod +x test.sh'
+                sh './test.sh'
             }
         }
 
         stage('Build') {
             steps {
                 echo 'Building Java app...'
-                bat 'javac HelloWorld.java'
+                sh 'javac HelloWorld.java'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Simulated Deployment...'
-                bat 'echo Deployment Completed Successfully!'
+                sh 'echo Deployment Completed Successfully!'
             }
         }
     }
@@ -36,3 +37,4 @@ pipeline {
         failure { echo 'Pipeline Failed' }
     }
 }
+
